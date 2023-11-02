@@ -1,0 +1,13 @@
+@use "sass:math";
+
+@mixin Grid($cols, $margin, $height) {
+    height: $height;
+    width: math.div(100% - (($cols - 1) * $margin), $cols); //BODMAS
+    float: left;
+    margin-right: $margin;
+    margin-bottom: $margin;
+
+    &:nth-child(#{$cols}n) {
+        margin-right: 0;
+    }
+}

@@ -1,0 +1,46 @@
+//variables
+@import "./variables";
+@import "./base";
+@import "./mixins";
+@import "./mathsFunc";
+@import "./useMediaQuery";
+
+
+//nesting
+header {
+    @include NavBar($primaryColor, $secondaryColor, $whiteColor);
+}
+
+section {
+    @include NavBar(dodgerblue, navy, white);
+}
+
+
+main {
+    width: 100%;
+    height: auto;
+    padding-inline: 1rem;
+
+    @include mediaQuery(767px) {
+        padding-inline: 0.5rem;
+    }
+
+    div {
+        background-image: linear-gradient(to right, $secondaryColor, $primaryColor);
+
+        // mobile view
+        @include mediaQuery(767px) {
+            @include Grid(2, 2%, 200px);
+        }
+
+        //iPad view
+        @include mediaQuery(1024px, 768px) {
+            @include Grid(4, 2%, 200px);
+        }
+
+        // laptop view
+        @include mediaQuery(1525px, 1025px) {
+            @include Grid(6, 2%, 200px);
+        }
+    }
+}

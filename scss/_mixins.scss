@@ -1,0 +1,78 @@
+//mixins
+@import "./variables";
+
+
+//button
+@mixin buttonDesign($btnbg, $btntxtcolor, $btnhoverbg) {
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    color: $btntxtcolor;
+    background-color: $btnbg;
+    padding: 12px 30px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+
+    &::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        left: -100%;
+        top: 0;
+        background-color: $btnhoverbg;
+        transition: 1s;
+    }
+
+    &:hover {
+        color: $btnbg;
+    }
+
+    &:hover::before {
+        left: 0%;
+    }
+}
+
+
+@mixin NavBar($navbg, $btnbg, $txtcolor) {
+    width: 100%;
+    height: 90px;
+    background-color: $navbg;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 3rem;
+
+    .logo {
+        text-decoration: none;
+        color: $btnbg;
+        font-family: $font2;
+        font-weight: 700;
+        font-size: 0.9cm;
+    }
+
+    ul {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+
+        a {
+            text-decoration: none;
+            color: $txtcolor;
+            font-family: $font1;
+            font-size: 1rem;
+            transition: 200ms;
+
+            &:hover {
+                color: $btnbg;
+            }
+        }
+    }
+
+    .cta {
+        @include buttonDesign($btnbg, $txtcolor , $txtcolor);
+    }
+}
